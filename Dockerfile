@@ -19,9 +19,12 @@ COPY . /app
 
 # ── PYTHONPATH explicitly set karo ──
 # Yeh Python ko batata hai /app mein dhundo imports ke liye
-ENV PYTHONPATH=/app
+COPY . .
 
+ENV PYTHONPATH=/app:$PYTHONPATH
 ENV PORT=8000
+
+
 EXPOSE 8000
 
 CMD ["python", "start.py"]
