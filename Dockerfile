@@ -1,18 +1,25 @@
 FROM python:3.11-slim
 
+# Working directory set karo
 WORKDIR /app
 
-# System dependencies (psycopg2, bcrypt, chromadb ke liye zaroori)
+# System dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Requirements pehle copy karo (Docker layer caching ke liye)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# ── CRITICAL: Poora project copy karo /app mein ──
+COPY . /app
+
+# ── PYTHONPATH explicitly set karo ──
+# Yeh Python ko batata hai /app mein dhundo imports ke liye
+ENV PYTHONPATH=/app
 
 ENV PORT=8000
 EXPOSE 8000
