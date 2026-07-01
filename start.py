@@ -1,8 +1,11 @@
-"""
-Entry point for production deployment.
-Render/Railway/Fly.io yeh file run karenge.
-"""
 import os
+import sys
+
+# Debug: confirm current directory aur mentor_mind ki location
+print("Current working directory:", os.getcwd())
+print("Files in current directory:", os.listdir("."))
+print("Python path:", sys.path)
+
 import uvicorn
 
 if __name__ == "__main__":
