@@ -1,10 +1,16 @@
 import os
 import sys
 
-# Debug: confirm current directory aur mentor_mind ki location
-print("Current working directory:", os.getcwd())
-print("Files in current directory:", os.listdir("."))
-print("Python path:", sys.path)
+print("=== STARTUP DEBUG ===")
+print("Working directory:", os.getcwd())
+print("Contents:", os.listdir("."))
+print("sys.path:", sys.path)
+
+if os.path.isdir("mentor_mind"):
+    print("mentor_mind FOLDER FOUND")
+    print("mentor_mind contents:", os.listdir("mentor_mind"))
+else:
+    print("mentor_mind FOLDER NOT FOUND AT RUNTIME!")
 
 import uvicorn
 
